@@ -17,3 +17,7 @@ puts
 
 edge_knight = Knight.new(['h', 5])
 p edge_knight.possible_moves
+p edge_knight
+
+edge_knight.move(['g', 7])
+p edge_knight

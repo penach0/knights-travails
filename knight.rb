@@ -7,7 +7,10 @@ class Knight
 
   def initialize(position)
     @position = position
+    translate_coordinates(position)
+  end
 
+  def translate_coordinates(position)
     x, y = position
     @x = X.find_index(x)
     @y = Y.find_index(y)
@@ -26,5 +29,9 @@ class Knight
     end
     possible_moves
   end
-end
 
+  def move(new_position)
+    @position = new_position
+    translate_coordinates(new_position)
+  end
+end
