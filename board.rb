@@ -1,6 +1,9 @@
+require_relative 'coordinates'
+
 # Represents a chessboard.
 # Chose the typical chess notation for the coordinates
 class Board
+  include Coordinates
   attr_accessor :board
 
   def initialize
@@ -9,16 +12,12 @@ class Board
 
   def create_board
     board = Array.new(8) { Array.new(8) }
-    numbers = [*1..8]
-    letters = [*'a'..'h']
     8.times do |line|
       8.times do |column|
-        board[line][column] = [letters[column], numbers[line]]
+        board[line][column] = [X[column], Y[line]]
       end
     end
     board.reverse
   end
 end
 
-board = Board.new
-board.board.each { |line| p line }
