@@ -20,4 +20,3 @@ class Board
     board.reverse
   end
 end
-
