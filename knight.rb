@@ -37,17 +37,17 @@ class Knight
 
   def knight_moves(end_position, queue = [@position])
     visited = []
-    path = [@position]
 
     until @position == end_position
-      break path << end_position if possible_moves.include?(end_position)
+      return queue.first << end_position if possible_moves.include?(end_position)
 
+      path = visited.empty? ? [queue.first] : queue.first
       possible_moves.each do |move|
-        queue << move unless visited.include?(move)
+        possible_path = (path.dup << move)
+        queue << possible_path unless visited.include?(move)
       end
-      visited << queue.shift
-      move(queue.first)
+      visited << (visited.empty? ? queue.shift : queue.shift.last)
+      move(queue.first.last)
     end
-    path
   end
 end
