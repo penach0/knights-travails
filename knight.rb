@@ -34,4 +34,16 @@ class Knight
     @position = new_position
     translate_coordinates(new_position)
   end
+
+  def knight_moves(end_position, queue = [@position])
+    path = [@position]
+    until @position == end_position
+      break path << end_position if possible_moves.include?(end_position)
+
+      possible_moves.each { |move| queue << move }
+      queue.shift
+      move(queue.first)
+    end
+    path
+  end
 end
