@@ -3,21 +3,11 @@ require_relative 'knight'
 
 board = Board.new.board
 
-knight = Knight.new(['d', 4])
-p knight.possible_moves
-puts
+def knight_moves(start, finish)
+  path = Knight.new(start).find_path(finish)
 
-corner_knight = Knight.new(['a', 1])
-p corner_knight.possible_moves
-puts
+  puts "You made it in #{path.size - 1} moves! Here is your path:"
+  path.each { |square| puts square.to_s }
+end
 
-top_corner_knight = Knight.new(['h', 8])
-p top_corner_knight.possible_moves
-puts
-
-edge_knight = Knight.new(['h', 5])
-p edge_knight.possible_moves
-p edge_knight
-
-edge_knight.move(['g', 7])
-p edge_knight
+knight_moves(['h', 8], ['a', 1])
