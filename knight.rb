@@ -35,13 +35,16 @@ class Knight
     translate_coordinates(new_position)
   end
 
-  def knight_moves(end_position, queue = [@position])
+  # This method conducts a Breadth First Search to find the shortest path to a given square
+  # visited.empty? checks prevent unwanted behaviour when appending arrays on the first iteration
+  # After the first iteration we only add the last move of the path to the visited array
+  def find_path(end_position, queue = [@position])
     visited = []
 
     until @position == end_position
-      return queue.first << end_position if possible_moves.include?(end_position)
-
       path = visited.empty? ? [queue.first] : queue.first
+      return path << end_position if possible_moves.include?(end_position)
+
       possible_moves.each do |move|
         possible_path = (path.dup << move)
         queue << possible_path unless visited.include?(move)
