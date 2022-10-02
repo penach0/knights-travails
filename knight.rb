@@ -36,12 +36,16 @@ class Knight
   end
 
   def knight_moves(end_position, queue = [@position])
+    visited = []
     path = [@position]
+
     until @position == end_position
       break path << end_position if possible_moves.include?(end_position)
 
-      possible_moves.each { |move| queue << move }
-      queue.shift
+      possible_moves.each do |move|
+        queue << move unless visited.include?(move)
+      end
+      visited << queue.shift
       move(queue.first)
     end
     path
